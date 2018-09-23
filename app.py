@@ -59,20 +59,13 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    # if text=="adit":
-    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat adit'))
-    # if text=="mail":
-    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat mail'))
-    # if text=="djohan":
-    #     line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat djohan'))
     a=(randint(0, 9))
     if a%2:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Iya'))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Tidak'))
 
-    # line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\nKata Kunci Tidak Diketahui :) \nKetik "menu" untuk mengetahui menu yang tersedia'))
-
+    
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
