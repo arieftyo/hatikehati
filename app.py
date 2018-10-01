@@ -6,6 +6,7 @@ from linebot import (
 from linebot.exceptions import (
     InvalidSignatureError
 )
+from random import randint
 from linebot.models import *
 import requests, json
 
