@@ -43,8 +43,8 @@ handler = WebhookHandler('30458b4e6d4f12e05791ec3948d0c18f')
 notes = {}
 
 #INPUT DATA MHS buat di app.py
-def inputmhs(nrp, nama, almat):
-    r = requests.post("http://www.aditmasih.tk/api_kelompok3/insert.php", data={'nrp': nrp, 'nama': nama, 'alama': alamat})
+def inputmhs(nrp, nama, alamat):
+    r = requests.post("http://www.aditmasih.tk/api_kelompok3/insert.php", data={'nrp': nrp, 'nama': nama, 'alamat': alamat})
     data = r.json()
 
     flag = data['flag']
@@ -73,6 +73,7 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
+    
     data=text.split('-')
     if(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputmhs(data[1],data[2],data[3])))
