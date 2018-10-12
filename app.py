@@ -51,7 +51,7 @@ def inputbuku(id_buku, judul_buku, pengarang, tahun):
     flag = data['flag']
    
     if(flag == "1"):
-        return 'Data '+buku+' berhasil dimasukkan\n'
+        return 'Data '+' berhasil dimasukkan\n'
     elif(flag == "0"):
         return 'Data gagal dimasukkan\n'
 
