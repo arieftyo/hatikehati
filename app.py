@@ -43,14 +43,15 @@ handler = WebhookHandler('30458b4e6d4f12e05791ec3948d0c18f')
 notes = {}
 
 #INPUT DATA MHS buat di app.py
-def inputmhs(nrp, nama, alamat):
-    r = requests.post("http://www.aditmasih.tk/api_kelompok3/insert.php", data={'nrp': nrp, 'nama': nama, 'alamat': alamat})
+def inputbuku(id_buku, judul_buku, pengarang, tahun):
+    r = requests.post("http://www.aditmasih.tk/api_tyo/insert.php", data={'id_buku': id_buku, 'judul_buku': judul_buku, 
+        'pengarang': pengarang})
     data = r.json()
 
     flag = data['flag']
    
     if(flag == "1"):
-        return 'Data '+nama+' berhasil dimasukkan\n'
+        return 'Data '+buku+' berhasil dimasukkan\n'
     elif(flag == "0"):
         return 'Data gagal dimasukkan\n'
 
