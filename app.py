@@ -44,8 +44,8 @@ notes = {}
 
 #INPUT DATA MHS buat di app.py
 def inputbuku(id_buku, judul_buku, pengarang, tahun):
-    r = requests.post("http://www.aditmasih.tk/api_tyo/insert.php", data={'id_buku': id_buku, 'judul_buku': judul_buku, 
-        'pengarang': pengarang})
+    r = requests.post("http://www.aditmasih.tk/api-tyo/insert.php", data={'id_buku': id_buku, 'judul_buku': judul_buku, 
+        'pengarang': pengarang, 'tahun': tahun})
     data = r.json()
 
     flag = data['flag']
