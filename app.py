@@ -56,8 +56,8 @@ def inputbuku(id_buku, judul_buku, pengarang, tahun):
         return 'Data gagal dimasukkan\n'
 
 def caribuku(id_buku):
-    URLmhs = "http://www.aditmasih.tk/api-tyo/show.php?id_buku=" + id_buku
-    r = requests.get(URLmhs)
+    URL = "http://www.aditmasih.tk/api-tyo/show.php?id_buku=" + id_buku
+    r = requests.get(URL)
     data = r.json()
     err = "data tidak ditemukan"
     
@@ -116,8 +116,8 @@ def hapusbuku(id_buku):
         return 'Data gagal dihapus\n'
 
 def updatebuku(idLama,id_buku,judul_buku,pengarang,tahun):
-    URLmhs = "http://www.aditmasih.tk/api-tyo/show.php?id_buku=" + idLama
-    r = requests.get(URLmhs)
+    URL = "http://www.aditmasih.tk/api-tyo/show.php?id_buku=" + idLama
+    r = requests.get(URL)
     data = r.json()
     err = "data tidak ditemukan"
     id_lama=idLama
@@ -166,10 +166,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=hapusbuku(data[1])))
     elif(data[0]=='ganti'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatebuku(data[1],data[2],data[3],data[4],data[5])))
-    elif(data[0]=='semwa'):
+    elif(data[0]=='semua'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allbuku()))
     elif(data[0]=='menu'):
-        menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semwa"
+        menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semua"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\n'+event.message.text))
 
