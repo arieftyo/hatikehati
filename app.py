@@ -89,7 +89,7 @@ def allbuku():
             id_buku = data['data_buku'][int(i)][0]
             judul_buku = data['data_buku'][int(i)][2]
             pengarang = data['data_buku'][int(i)][4]
-            tahun = data['tahun'][int(i)][6]
+            tahun = data['tahun'][int(i)][8]
             hasil=hasil+str(i+1)
             hasil=hasil+".\nID buku : "
             hasil=hasil+id_buku
@@ -123,8 +123,8 @@ def updatebuku(idLama,id_buku,judul_buku,pengarang,tahun):
     id_lama=idLama
     flag = data['flag']
     if(flag == "1"):
-        r = requests.post("http://www.aditmasih.tk/api-tyo/update.php", data={'id_buku': id_buku, 'judul_buku': judul_buku,
-         'pengarang': pengarang, 'tahun': tahun, 'id_lama':id_lama})
+        r = requests.post("http://www.aditmasih.tk/api-tyo/update.php", data={'id_lama':id_lama, 'id_buku': id_buku, 'judul_buku': judul_buku,
+         'pengarang': pengarang, 'tahun': tahun})
         data = r.json()
         flag = data['flag']
 
