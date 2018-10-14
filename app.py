@@ -55,8 +55,8 @@ def inputbuku(id_buku, judul_buku, pengarang, tahun):
     elif(flag == "0"):
         return 'Data gagal dimasukkan\n'
 
-def caribuku(judul_buku):
-    URLmhs = "http://www.aditmasih.tk/api-tyo/show.php?judul_buku=" + judul_buku
+def caribuku(id_buku):
+    URLmhs = "http://www.aditmasih.tk/api-tyo/show.php?id_buku=" + id_buku
     r = requests.get(URLmhs)
     data = r.json()
     err = "data tidak ditemukan"
@@ -89,6 +89,7 @@ def allbuku():
             id_buku = data['data_buku'][int(i)][0]
             judul_buku = data['data_buku'][int(i)][2]
             pengarang = data['data_buku'][int(i)][4]
+            tahun = data['tahun'][int(i)][6]
             hasil=hasil+str(i+1)
             hasil=hasil+".\nID buku : "
             hasil=hasil+id_buku
@@ -97,9 +98,11 @@ def allbuku():
             hasil=hasil+"\nPengarang : "
             hasil=hasil+pengarang
             hasil=hasil+"\n"
+            hasil=hasil+tahun
+            hasil=hasil+"\n"
         return hasil
     elif(flag == "0"):
-        return 'Data gagal dimasukkan\n'
+        return 'Perpustakaan kosong\n'
 
 def hapusbuku(id_buku):
     r = requests.post("http://www.aditmasih.tk/api-tyo/delete.php", data={'id_buku': id_buku})
