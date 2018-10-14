@@ -89,7 +89,7 @@ def allbuku():
             id_buku = data['data_buku'][int(i)][0]
             judul_buku = data['data_buku'][int(i)][2]
             pengarang = data['data_buku'][int(i)][4]
-            tahun = data['tahun'][int(i)][8]
+            tahun = data['data_buku'][int(i)][6]
             hasil=hasil+str(i+1)
             hasil=hasil+".\nID buku : "
             hasil=hasil+id_buku
@@ -129,7 +129,7 @@ def updatebuku(idLama,id_buku,judul_buku,pengarang,tahun):
         flag = data['flag']
 
         if(flag == "1"):
-            return 'Data '+id_lama+'berhasil diupdate\n'
+            return 'Data '+id_lama+' berhasil diupdate\n'
         elif(flag == "0"):
             return 'Data gagal diupdate\n'
 
@@ -159,7 +159,7 @@ def handle_message(event):
     
     data=text.split('-')
     if(data[0]=='lihat'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[2])))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[1])))
     elif(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputbuku(data[1],data[2],data[3],data[4])))
     elif(data[0]=='hapus'):
@@ -169,7 +169,7 @@ def handle_message(event):
     elif(data[0]=='semwa'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allbuku()))
     elif(data[0]=='menu'):
-        menu = "1. lihat-[judul_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semwa"
+        menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semwa"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Halo '+profile.display_name+'\n'+event.message.text))
 
