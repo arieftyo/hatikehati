@@ -152,7 +152,7 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    data=text.split('')
+    data=text.split('-')
     if(data[0]=='lihat'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[0])))
     elif(data[0]=='tambah'):
@@ -186,18 +186,6 @@ def handle_message(event):
                 MessageAction(
                     label='tambah buku',
                     text='tambah buku'
-                ),
-                MessageAction(
-                    label='hapus',
-                    text='hapus'
-                ),
-                MessageAction(
-                    label='ganti buku',
-                    text='ganti buku'
-                ),
-                MessageAction(
-                    label='lihat',
-                    text='lihat'
                 )
             ]
           )
@@ -206,7 +194,7 @@ def handle_message(event):
         #menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semua"
         #line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
     else :
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Ketik menu dong ! '))
+      line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Ketik menu dong ! '))
 
 
     
