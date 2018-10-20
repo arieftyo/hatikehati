@@ -149,7 +149,7 @@ def callback():
         abort(400)
     return 'OK'
 
-@handler.add(MessageEvent, message=ImageCarouselTemplate)
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
     text = event.message.text #simplify for receove message
@@ -157,33 +157,39 @@ def handle_message(event):
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
         
-    line_bot_api.reply_message(event.reply_token, image_carousel_template_message = TemplateSendMessage(
-        alt_text='ImageCarousel template',
-        template=ImageCarouselTemplate(
-            columns=[
-                ImageCarouselColumn(
-                    image_url='http://terjan-rembang.sideka.id/wp-content/uploads/sites/1649/2017/09/Gambar-Pemandangan-Alam-Pantai-1323.jpg',
-                    action=PostbackAction(
-                        label='postback1',
-                        text='postback text1',
-                        data='action=buy&itemid=1'
-                    )
-                ),
-                ImageCarouselColumn(
-                    image_url='https://blog.tiket.com/wp-content/uploads/Gambar-Pemandangan-Alam-Terindah-Danau-Kelimutu.jpg',
-                    action=PostbackAction(
-                        label='postback2',
-                        text='postback text2',
-                        data='action=buy&itemid=2'
-                        )
-                    )
-                ]
-            )
-        )
-    )
+   client.replyImageCarouselTemplate(
+  REPLY_TOKEN,
+  'this is an image carousel template',
+  [
+    {
+      imageUrl: 'https://example.com/bot/images/item1.jpg',
+      action: {
+        type: 'postback',
+        label: 'Buy',
+        data: 'action=buy&itemid=111',
+      },
+    },
+    {
+      imageUrl: 'https://example.com/bot/images/item2.jpg',
+      action: {
+        type: 'message',
+        label: 'Yes',
+        text: 'yes',
+      },
+    },
+    {
+      imageUrl: 'https://example.com/bot/images/item3.jpg',
+      action: {
+        type: 'uri',
+        label: 'View detail',
+        uri: 'http://example.com/page/222',
+      },
+    },
+  ]
+);
    # data=text.split('-')
    # if(data[0]=='lihat'):
-   #     (event.reply_token, TextSendMessage(text=caribuku(data[1])))
+   #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[1])))
    # elif(data[0]=='tambah'):
    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputbuku(data[1],data[2],data[3],data[4])))
    # elif(data[0]=='hapus'):
