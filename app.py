@@ -175,19 +175,14 @@ def handle_message(event):
             title='Menu',
             text='Please select',
             actions=[
-                PostbackAction(
-                    label='postback',
-                    text='postback text',
-                    data='action=buy&itemid=1'
+                MessageAction(
+                    label='semua',
+                    text='semua'
                 ),
                 MessageAction(
-                    label='message',
-                    text='message text'
+                    label='lihat',
+                    text='lihat'
                 ),
-                URIAction(
-                    label='uri',
-                    uri='http://example.com/'
-                )
             ]
           )
         )
