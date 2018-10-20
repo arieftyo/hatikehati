@@ -169,27 +169,27 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allbuku()))
     elif(data[0]=='menu' ):
         line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
-          alt_text='ImageCarousel template',
-          template=ImageCarouselTemplate(
-              columns=[
-                  ImageCarouselColumn(
-                    image_url='https://blog.tiket.com/wp-content/uploads/Pemandangan-Alam-Terindah-di-Indonesia.jpg',
-                    action=PostbackAction(
-                      label='postback1',
-                      text='postback text1',
-                      data='action=buy&itemid=1'
-                    )
-                  ),
-                  ImageCarouselColumn(
-                    image_url='https://blog.tiket.com/wp-content/uploads/Gambar-Pemandangan-Alam-Terindah-Danau-Weekuri.jpg',
-                    action=PostbackAction(
-                      label='postback2',
-                      text='postback text2',
-                      data='action=buy&itemid=2'
-                    )
-                  )
-              ]
-            )
+        alt_text='Buttons template',
+        template=ButtonsTemplate(
+            thumbnail_image_url='https://asset.kompas.com/crop/65x65:865x599/750x500/data/photo/2017/06/28/1265845835.jpg',
+            title='Menu',
+            text='Please select',
+            actions=[
+                PostbackAction(
+                    label='postback',
+                    text='postback text',
+                    data='action=buy&itemid=1'
+                ),
+                MessageAction(
+                    label='message',
+                    text='message text'
+                ),
+                URIAction(
+                    label='uri',
+                    uri='http://example.com/'
+                )
+            ]
+          )
         )
       )
         #menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semua"
