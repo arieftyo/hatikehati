@@ -155,31 +155,7 @@ def handle_message(event):
     text = event.message.text #simplify for receove message
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
-    profile = line_bot_api.get_profile(sender)    
-
-    #line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
-    #    alt_text='ImageCarousel template',
-    #   template=ImageCarouselTemplate(
-    #        columns=[
-    #            ImageCarouselColumn(
-    #                image_url='https://blog.tiket.com/wp-content/uploads/Pemandangan-Alam-Terindah-di-Indonesia.jpg',
-    #                action=PostbackAction(
-    #                    label='postback1',
-    #                    text='postback text1',
-    #                    data='action=buy&itemid=1'
-    #                )
-    #            ),
-    #            ImageCarouselColumn(
-    #                image_url='https://blog.tiket.com/wp-content/uploads/Gambar-Pemandangan-Alam-Terindah-Danau-Weekuri.jpg',
-    #               action=PostbackAction(
-    #                    label='postback2',
-    #                    text='postback text2',
-    #                    data='action=buy&itemid=2'
-    #                )
-    #            )
-    #        ]
-    #    )
-    #)
+    profile = line_bot_api.get_profile(sender)   
     data=text.split('-')
     if(data[0]=='lihat'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[1])))
@@ -191,9 +167,33 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatebuku(data[1],data[2],data[3],data[4],data[5])))
     elif(data[0]=='semua'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allbuku()))
-    elif(data[0]=='menu'):
-        menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semua"
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
+    elif(data[0]=='menu' ):
+        
+        line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
+            alt_text='ImageCarousel template',
+           template=ImageCarouselTemplate(
+                columns=[
+                    ImageCarouselColumn(
+                        image_url='https://blog.tiket.com/wp-content/uploads/Pemandangan-Alam-Terindah-di-Indonesia.jpg',
+                        action=PostbackAction(
+                            label='postback1',
+                            text='postback text1',
+                            data='action=buy&itemid=1'
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url='https://blog.tiket.com/wp-content/uploads/Gambar-Pemandangan-Alam-Terindah-Danau-Weekuri.jpg',
+                       action=PostbackAction(
+                            label='postback2',
+                            text='postback text2',
+                            data='action=buy&itemid=2'
+                        )
+                    )
+                ]
+            )
+        )
+        #menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semua"
+        #line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
     else :
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Ketik Menu dong ! '))
 
