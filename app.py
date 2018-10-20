@@ -172,7 +172,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="ketikkan tambah-[id_buku]"))
     elif(data[0]=='lihat buku'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="ketikkan lihat-[id_buku]"))
-    elif(data[0]=='menu' or 'Menu'):
+    elif(data[0]=='menu' or data[0]=='Menu'):
         line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
