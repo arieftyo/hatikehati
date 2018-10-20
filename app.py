@@ -183,7 +183,7 @@ def handle_message(event):
                     ),
                     ImageCarouselColumn(
                         image_url='https://blog.tiket.com/wp-content/uploads/Gambar-Pemandangan-Alam-Terindah-Danau-Weekuri.jpg',
-                       action=PostbackAction(
+                        action=PostbackAction(
                             label='postback2',
                             text='postback text2',
                             data='action=buy&itemid=2'
