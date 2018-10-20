@@ -155,38 +155,31 @@ def handle_message(event):
     text = event.message.text #simplify for receove message
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
-    profile = line_bot_api.get_profile(sender)
-        
-   client.replyImageCarouselTemplate(
-  REPLY_TOKEN,
-  'this is an image carousel template',
-  [
-    {
-      imageUrl: 'https://example.com/bot/images/item1.jpg',
-      action: {
-        type: 'postback',
-        label: 'Buy',
-        data: 'action=buy&itemid=111',
-      },
-    },
-    {
-      imageUrl: 'https://example.com/bot/images/item2.jpg',
-      action: {
-        type: 'message',
-        label: 'Yes',
-        text: 'yes',
-      },
-    },
-    {
-      imageUrl: 'https://example.com/bot/images/item3.jpg',
-      action: {
-        type: 'uri',
-        label: 'View detail',
-        uri: 'http://example.com/page/222',
-      },
-    },
-  ]
-);
+    profile = line_bot_api.get_profile(sender)    
+
+    line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
+        alt_text='ImageCarousel template',
+        template=ImageCarouselTemplate(
+            columns=[
+                ImageCarouselColumn(
+                    image_url='https://blog.tiket.com/wp-content/uploads/Pemandangan-Alam-Terindah-di-Indonesia.jpg',
+                    action=PostbackAction(
+                        label='postback1',
+                        text='postback text1',
+                        data='action=buy&itemid=1'
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url='https://blog.tiket.com/wp-content/uploads/Gambar-Pemandangan-Alam-Terindah-Danau-Weekuri.jpg',
+                    action=PostbackAction(
+                        label='postback2',
+                        text='postback text2',
+                        data='action=buy&itemid=2'
+                    )
+                )
+            ]
+        )
+    )
    # data=text.split('-')
    # if(data[0]=='lihat'):
    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[1])))
