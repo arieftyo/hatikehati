@@ -189,7 +189,8 @@ def handle_message(event):
                     )
                   )
               ]
-          )
+            )
+        )
       )
         #menu = "1. lihat-[id_buku]\n2. tambah-[id_buku]-[judul_buku]-[pengarang]-[tahun]\n3. hapus-[id_buku]\n4. ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]\n5. semua"
         #line_bot_api.reply_message(event.reply_token, TextSendMessage(text=menu))
