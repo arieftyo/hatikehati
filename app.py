@@ -67,9 +67,6 @@ def caribuku(id_buku):
         judul_buku = data['data_buku'][0]['judul_buku']
         pengarang = data['data_buku'][0]['pengarang']
         tahun = data['data_buku'][0]['tahun']
-
-        # munculin semua, ga rapi, ada 'u' nya
-        # all_data = data['data_angkatan'][0]
         data= "Judul buku : "+judul_buku+"\nid buku : "+id_buku+"\nPengarang : "+pengarang+"\nTahun : "+tahun
         return data
         # return all_data
@@ -151,14 +148,13 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
     text = event.message.text #simplify for receove message
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
-    profile = line_bot_api.get_profile(sender)   
+    profile = line_bot_api.get_profile(sender)
     data=text.split('')
     if(data[0]=='lihat'):
-        line_bot_api.push_message(to, TextSendMessage(text='masukkan id'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[0])))
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[0])))
     elif(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputbuku(data[1],data[2],data[3],data[4])))
@@ -168,6 +164,14 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatebuku(data[1],data[2],data[3],data[4],data[5])))
     elif(data[0]=='semua'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allbuku()))
+    elif(data[0]=='ganti buku'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="ketikkan ganti-[id lama]-[id baru]-[judul_buku baru]-[pengarang baru]-[tahun baru]"))
+    elif(data[0]=='hapus buku'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="ketikkan hapus-[id_buku]"))
+    elif(data[0]=='tambah buku'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="ketikkan tambah-[id_buku]"))
+    elif(data[0]=='lihat buku'):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="ketikkan lihat-[id_buku]"))
     elif(data[0]=='menu' or 'Menu'):
         line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
         alt_text='Buttons template',
@@ -177,8 +181,20 @@ def handle_message(event):
             text='Please select',
             actions=[
                 MessageAction(
-                    label='semua',
-                    text='semua'
+                    label='lihat buku',
+                    text='lihat buku'
+                ),
+                MessageAction(
+                    label='tambah buku',
+                    text='tambah buku'
+                ),
+                MessageAction(
+                    label='hapus',
+                    text='hapus'
+                ),
+                MessageAction(
+                    label='ganti buku',
+                    text='ganti buku'
                 ),
                 MessageAction(
                     label='lihat',
