@@ -160,7 +160,6 @@ def handle_message(event):
     if(data[0]=='lihat'):
         line_bot_api.push_message(to, TextSendMessage(text='masukkan id'))
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[0])))
-
     elif(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputbuku(data[1],data[2],data[3],data[4])))
     elif(data[0]=='hapus'):
