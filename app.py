@@ -156,9 +156,11 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)   
-    data=text.split('-')
+    data=text.split('')
     if(data[0]=='lihat'):
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[1])))
+        line_bot_api.push_message(to, TextSendMessage(text='masukkan id'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=caribuku(data[0])))
+
     elif(data[0]=='tambah'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=inputbuku(data[1],data[2],data[3],data[4])))
     elif(data[0]=='hapus'):
@@ -167,7 +169,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=updatebuku(data[1],data[2],data[3],data[4],data[5])))
     elif(data[0]=='semua'):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=allbuku()))
-    elif(data[0]=='menu' ):
+    elif(data[0]=='menu' or 'Menu'):
         line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
